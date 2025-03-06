@@ -6,12 +6,14 @@ public class Player : MonoBehaviour
 {
     public PlayerController _playerController;
     public PlayerData _playerData;
+    public PlayerCondition _playerCondition;
 
     private void Awake()
     {
         CharactorManager.Instance.Player = this;
         _playerController = GetComponent<PlayerController>();
         _playerData = GetComponent<PlayerData>();
+        _playerCondition = GetComponent<PlayerCondition>();
     }
 
     private void Start()

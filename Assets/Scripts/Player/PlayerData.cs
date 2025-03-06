@@ -8,6 +8,7 @@ public class PlayerData : MonoBehaviour
     public float moveSpeed;
     public Vector2 curMovementInput;
     public float jumpPower;
+    public float useJumpStamina;
     public LayerMask groundLayerMask;
 
     [Header("Look")]
