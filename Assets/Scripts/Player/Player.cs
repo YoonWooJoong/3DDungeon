@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,9 @@ public class Player : MonoBehaviour
     public PlayerController _playerController;
     public PlayerData _playerData;
     public PlayerCondition _playerCondition;
+
+    public ItemData _itemData;
+    public Action addItem;
 
     private void Awake()
     {
