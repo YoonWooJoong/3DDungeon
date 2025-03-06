@@ -1004,6 +1004,7 @@ MonoBehaviour:
   moveSpeed: 5
   curMovementInput: {x: 0, y: 0}
   jumpPower: 100
+  useJumpStamina: 100
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
