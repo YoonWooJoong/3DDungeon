@@ -202,6 +202,12 @@ public class UIInventory : MonoBehaviour
                     case ConsumableType.Health:
                         condition.Heal(selectedItem.consumables[i].value);
                         break;
+                    case ConsumableType.Speed:
+                        condition.StartCoroutine(condition.SpeedBuf(selectedItem.consumables[i].value));
+                        break;
+                    case ConsumableType.Jump:
+                        condition.StartCoroutine(condition.JumpBuf(selectedItem.consumables[i].value));
+                        break;
                 }
             }
             RemoveSelectedItem();

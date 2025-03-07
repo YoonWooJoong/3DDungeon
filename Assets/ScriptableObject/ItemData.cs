@@ -13,7 +13,9 @@ public enum ItemType
 
 public enum ConsumableType
 {
-    Health
+    Health,
+    Speed,
+    Jump
 }
 
 public enum EquipableType

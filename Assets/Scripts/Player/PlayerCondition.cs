@@ -56,4 +56,17 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         stamina.Subtract(amount);
         return true;
     }
+
+    public IEnumerator SpeedBuf(float value)
+    {
+        CharactorManager.Instance.Player._playerData.moveSpeed += value;
+        yield return new WaitForSeconds(5);
+        CharactorManager.Instance.Player._playerData.moveSpeed -= value;
+    }
+    public IEnumerator JumpBuf(float value)
+    {
+        CharactorManager.Instance.Player._playerData.jumpPower += value;
+        yield return new WaitForSeconds(5);
+        CharactorManager.Instance.Player._playerData.jumpPower -= value;
+    }
 }
