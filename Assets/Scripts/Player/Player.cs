@@ -8,9 +8,11 @@ public class Player : MonoBehaviour
     public PlayerController _playerController;
     public PlayerData _playerData;
     public PlayerCondition _playerCondition;
+    public Equipment _equip;
 
     public ItemData _itemData;
     public Action addItem;
+    public Transform dropPosition;
 
     private void Awake()
     {
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour
         _playerController = GetComponent<PlayerController>();
         _playerData = GetComponent<PlayerData>();
         _playerCondition = GetComponent<PlayerCondition>();
+        _equip = GetComponent<Equipment>();
     }
 
     private void Start()

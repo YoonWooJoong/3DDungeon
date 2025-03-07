@@ -98,4 +98,20 @@ public class PlayerController : MonoBehaviour
 
         return false;
     }
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            CharactorManager.Instance.Player._playerData.inventory?.Invoke();
+            ToggleCursor();
+        }
+    }
+
+
+    void ToggleCursor()
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked;
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        CharactorManager.Instance.Player._playerData.canLook = !toggle;
+    }
 }

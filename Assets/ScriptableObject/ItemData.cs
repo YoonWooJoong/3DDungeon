@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,10 +16,22 @@ public enum ConsumableType
     Health
 }
 
+public enum EquipableType
+{
+    Speed,
+    Jump
+}
+
 [Serializable]
 public class ItemDataConsumable
 {
     public ConsumableType type;
+    public float value;
+}
+[Serializable]
+public class ItemDataEuqipStats
+{
+    public EquipableType type;
     public float value;
 }
 
@@ -40,5 +53,6 @@ public class ItemData : ScriptableObject
     public ItemDataConsumable[] consumables;
 
     [Header("Equip")]
+    public ItemDataEuqipStats[] equipableStats;
     public GameObject equipPrefab;
 }

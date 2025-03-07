@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class PlayerData : MonoBehaviour
     public Vector2 mouseDelta;
     public bool canLook = true;
 
+    public Action inventory;
     private Rigidbody _rigidbody;
     public Rigidbody rigidbody { get { return _rigidbody; } }
 
