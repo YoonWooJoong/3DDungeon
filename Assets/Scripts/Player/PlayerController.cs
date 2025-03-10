@@ -36,6 +36,29 @@ public class PlayerController : MonoBehaviour
         rigidbody.velocity = dir;
     }
 
+    public void OnClimbInput(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            CharactorManager.Instance.Player._playerData.curMovementInput = context.ReadValue<Vector3>();
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            CharactorManager.Instance.Player._playerData.curMovementInput = Vector3.zero;
+        }
+    }
+
+    public void Climb(Vector3 curMovementInput, float speed, Rigidbody rigidbody)
+    {
+        Vector3 dir = transform.up * curMovementInput.y + transform.right*curMovementInput.x;
+        dir *= speed;
+        dir.z = rigidbody.velocity.z;
+
+        rigidbody.velocity = dir;
+        
+    }
+
+
     /// <summary>
     /// ½Ã¾ßInput
     /// </summary>
@@ -90,12 +113,32 @@ public class PlayerController : MonoBehaviour
 
         for(int i =0; i< rays.Length; i++)
         {
-            if (Physics.Raycast(rays[i], 0.1f, CharactorManager.Instance.Player._playerData.groundLayerMask))
+            if (Physics.Raycast(rays[i], 0.1f, CharactorManager.Instance.Player._playerData.groundLayerMask | CharactorManager.Instance.Player._playerData.wallLayerMask))
             {
                 return true;
             }
         }
 
+        return false;
+    }
+
+    public bool IsWall(Vector3 curMovementInput)
+    {
+        Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
+        Ray[] rays = new Ray[2]
+            {
+                new Ray(transform.position + (transform.right*0.2f) + (transform.up*0.1f) ,dir * 0.5f),
+                new Ray(transform.position + (-transform.right*0.2f) + (transform.up*0.1f) ,dir * 0.5f)
+            };
+        Debug.DrawRay(transform.position + (-transform.right * 0.2f) + (transform.up * 0.1f), dir * 0.5f, Color.red);
+        for (int i = 0; i < rays.Length; i++)
+        {
+            if (Physics.Raycast(rays[i], 0.5f, CharactorManager.Instance.Player._playerData.wallLayerMask))
+            {
+                return true;
+            }
+            
+        }
         return false;
     }
     public void OnInventory(InputAction.CallbackContext context)

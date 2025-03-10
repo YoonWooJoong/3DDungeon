@@ -57,16 +57,16 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         return true;
     }
 
-    public IEnumerator SpeedBuf(float value)
+    public IEnumerator SpeedBuf(float value, float time)
     {
         CharactorManager.Instance.Player._playerData.moveSpeed += value;
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(time);
         CharactorManager.Instance.Player._playerData.moveSpeed -= value;
     }
-    public IEnumerator JumpBuf(float value)
+    public IEnumerator JumpBuf(float value, float time)
     {
         CharactorManager.Instance.Player._playerData.jumpPower += value;
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(time);
         CharactorManager.Instance.Player._playerData.jumpPower -= value;
     }
 }

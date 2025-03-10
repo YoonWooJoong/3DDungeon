@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public PlayerData _playerData;
     public PlayerCondition _playerCondition;
     public Equipment _equip;
+    public bool isWall;
 
     public ItemData _itemData;
     public Action addItem;
@@ -30,7 +31,11 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _playerController.Move(_playerData.curMovementInput, _playerData.moveSpeed, _playerData.rigidbody);
+        isWall = _playerController.IsWall(_playerData.curMovementInput);
+        if (isWall)
+            _playerController.Climb(_playerData.curMovementInput, _playerData.moveSpeed, _playerData.rigidbody);
+        else
+            _playerController.Move(_playerData.curMovementInput, _playerData.moveSpeed, _playerData.rigidbody);
     }
     private void LateUpdate()
     {

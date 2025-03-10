@@ -11,6 +11,7 @@ public class PlayerData : MonoBehaviour
     public float jumpPower;
     public float useJumpStamina;
     public LayerMask groundLayerMask;
+    public LayerMask wallLayerMask;
 
     [Header("Look")]
     public Transform cameraContainer;

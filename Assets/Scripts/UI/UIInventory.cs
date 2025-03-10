@@ -203,10 +203,10 @@ public class UIInventory : MonoBehaviour
                         condition.Heal(selectedItem.consumables[i].value);
                         break;
                     case ConsumableType.Speed:
-                        condition.StartCoroutine(condition.SpeedBuf(selectedItem.consumables[i].value));
+                        condition.StartCoroutine(condition.SpeedBuf(selectedItem.consumables[i].value, selectedItem.consumables[i].time));
                         break;
                     case ConsumableType.Jump:
-                        condition.StartCoroutine(condition.JumpBuf(selectedItem.consumables[i].value));
+                        condition.StartCoroutine(condition.JumpBuf(selectedItem.consumables[i].value, selectedItem.consumables[i].time));
                         break;
                 }
             }
