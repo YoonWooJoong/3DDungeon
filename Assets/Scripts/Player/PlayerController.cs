@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
             CharactorManager.Instance.Player._playerData.curMovementInput = Vector2.zero;
         }
     }
+    
 
     /// <summary>
     /// 이동
@@ -27,14 +28,17 @@ public class PlayerController : MonoBehaviour
     /// <param name="curMovementInput">현재 입력된 이동input</param>
     /// <param name="speed">이동속도</param>
     /// <param name="rigidbody">player의 rigidbody</param>
-    public void Move(Vector2 curMovementInput, float speed, Rigidbody rigidbody)
+    public void Move(Vector2 curMovementInput, float speed, Rigidbody rigidbody, Vector3 ForceMove)
     { 
         Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
         dir *= speed;
+        dir += ForceMove;
         dir.y = rigidbody.velocity.y;
 
         rigidbody.velocity = dir;
     }
+
+
 
     public void OnClimbInput(InputAction.CallbackContext context)
     {
@@ -101,7 +105,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         Ray[] rays = new Ray[4]
         {

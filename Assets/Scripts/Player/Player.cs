@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
         if (isWall)
             _playerController.Climb(_playerData.curMovementInput, _playerData.moveSpeed, _playerData.rigidbody);
         else
-            _playerController.Move(_playerData.curMovementInput, _playerData.moveSpeed, _playerData.rigidbody);
+            _playerController.Move(_playerData.curMovementInput, _playerData.moveSpeed, _playerData.rigidbody,_playerData.ForceMove);
     }
     private void LateUpdate()
     {

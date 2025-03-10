@@ -12,6 +12,8 @@ public class PlayerData : MonoBehaviour
     public float useJumpStamina;
     public LayerMask groundLayerMask;
     public LayerMask wallLayerMask;
+    public bool isForceMove = false;
+    public Vector3 ForceMove { get; set; }
 
     [Header("Look")]
     public Transform cameraContainer;
