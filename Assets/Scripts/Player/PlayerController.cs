@@ -11,13 +11,20 @@ public class PlayerController : MonoBehaviour
     /// <param name="context"></param>
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (!CharactorManager.Instance.Player.isWall)
         {
-            CharactorManager.Instance.Player._playerData.curMovementInput = context.ReadValue<Vector2>();
-        }
-        else if (context.phase == InputActionPhase.Canceled)
-        {
-            CharactorManager.Instance.Player._playerData.curMovementInput = Vector2.zero;
+            if (context.phase == InputActionPhase.Performed)
+            {
+                Debug.Log("이동");
+                CharactorManager.Instance.Player._playerData.curMovementInput = context.ReadValue<Vector2>();
+                CharactorManager.Instance.Player._playerData.animator.SetBool("IsMove", true);
+            }
+            else if (context.phase == InputActionPhase.Canceled)
+            {
+                Debug.Log("호출");
+                CharactorManager.Instance.Player._playerData.curMovementInput = Vector2.zero;
+                CharactorManager.Instance.Player._playerData.animator.SetBool("IsMove", false);
+            }
         }
     }
     
@@ -42,13 +49,20 @@ public class PlayerController : MonoBehaviour
 
     public void OnClimbInput(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if(CharactorManager.Instance.Player.isWall)
         {
-            CharactorManager.Instance.Player._playerData.curMovementInput = context.ReadValue<Vector3>();
-        }
-        else if (context.phase == InputActionPhase.Canceled)
-        {
-            CharactorManager.Instance.Player._playerData.curMovementInput = Vector3.zero;
+            if (context.phase == InputActionPhase.Performed)
+            {
+                Debug.Log("Climb");
+                CharactorManager.Instance.Player._playerData.curMovementInput = context.ReadValue<Vector3>();
+
+            }
+            else if (context.phase == InputActionPhase.Canceled)
+            {
+
+                CharactorManager.Instance.Player._playerData.curMovementInput = Vector3.zero;
+
+            }
         }
     }
 
@@ -102,6 +116,7 @@ public class PlayerController : MonoBehaviour
             {
             CharactorManager.Instance.Player._playerData.rigidbody.AddForce(Vector2.up * CharactorManager.Instance.Player._playerData.jumpPower, ForceMode.Impulse);
             }
+            CharactorManager.Instance.Player._playerData.animator.SetTrigger("IsJump");
         }
     }
 
@@ -126,9 +141,10 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    public bool IsWall(Vector3 curMovementInput)
+    public bool IsWall(Camera camera)
     {
-        Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
+        Vector3 dir = camera.transform.forward;
+        dir.y = 0;
         Ray[] rays = new Ray[2]
             {
                 new Ray(transform.position + (transform.right*0.2f) + (transform.up*0.1f) ,dir * 0.5f),

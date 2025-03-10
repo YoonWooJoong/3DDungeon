@@ -21,6 +21,7 @@ public class PlayerData : MonoBehaviour
     public float maxXlook;
     public float camCurxRot;
     public float lookSensitivity;
+    public Camera camera;
 
     [HideInInspector]
     public Vector2 mouseDelta;
@@ -29,10 +30,12 @@ public class PlayerData : MonoBehaviour
     public Action inventory;
     private Rigidbody _rigidbody;
     public Rigidbody rigidbody { get { return _rigidbody; } }
+    public Animator animator;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        camera = Camera.main;
     }
 
 }

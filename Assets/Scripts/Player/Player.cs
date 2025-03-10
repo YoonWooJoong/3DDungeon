@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        isWall = _playerController.IsWall(_playerData.curMovementInput);
+        isWall = _playerController.IsWall(_playerData.camera);
         if (isWall)
             _playerController.Climb(_playerData.curMovementInput, _playerData.moveSpeed, _playerData.rigidbody);
         else
