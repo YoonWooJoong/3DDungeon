@@ -1,7 +1,10 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
@@ -14,7 +17,7 @@ public class Player : MonoBehaviour
     public ItemData _itemData;
     public Action addItem;
     public Transform dropPosition;
-
+    
     private void Awake()
     {
         CharactorManager.Instance.Player = this;
