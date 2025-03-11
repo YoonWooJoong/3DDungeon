@@ -86,11 +86,6 @@ public class MoveObject : MonoBehaviour
     }
     
 
-    //private void OnCollisionStay(Collision collision)
-    //{
-    //    collision.transform.position += movePosition;
-    //}
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
